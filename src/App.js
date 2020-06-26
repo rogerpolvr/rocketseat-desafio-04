@@ -40,9 +40,13 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
-        {repositories.map(repository =>
+
+      <FlatList
+          data={repositories}
+          keyExtractor={repository => repository.id}
+          renderItem={({ item: repository }) => (        
           <View style={styles.repositoryContainer}>
-            <Text style={styles.repository} key={repository.id}>{repository.title}</Text>
+            <Text style={styles.repository}>{repository.title}</Text>
 
             <View style={styles.techsContainer}>
               {repository.techs.map(tech =>
@@ -63,9 +67,11 @@ export default function App() {
             >
               <Text style={styles.buttonText}>Curtir</Text>
             </TouchableOpacity>
-          </View>
-        )}
+          </View>    
+             )}
+             />    
       </SafeAreaView>
+    
     </>
   );
 }
